@@ -31,6 +31,14 @@ const CONFIG = {
    * run, so this keeps holding as the repo list grows and its shape changes.
    */
   balanceByRepoSize: true,
+  /**
+   * The profile repo (the one named after the account) holds this generator, so
+   * counting it would let the card measure the code that draws the card. Worse,
+   * it is small, which drags the median down and rescales every other language.
+   * Excluded from the language split only — it is still a real public project,
+   * so it keeps counting toward the build signals.
+   */
+  excludeProfileRepo: true,
   /** Language rows per legend line on the composition card. */
   legendColumns: 5,
 };
@@ -77,7 +85,7 @@ query($login:String!,$after:String){
     repositories(first:100,after:$after,ownerAffiliations:OWNER,isFork:false){
       pageInfo{ hasNextPage endCursor }
       nodes{
-        isPrivate pushedAt stargazerCount
+        name isPrivate pushedAt stargazerCount
         releases(first:1){totalCount}
         languages(first:30,orderBy:{field:SIZE,direction:DESC}){ edges{ size node{ name color } } }
       }
@@ -190,7 +198,9 @@ async function measure() {
     // Bytes come from every owned repo including private ones, because the
     // public repos alone describe work that stopped in 2023. Only aggregate
     // names and totals are kept — no repository is ever named or counted here.
-    languages: languageSplit(nodes),
+    languages: languageSplit(
+      CONFIG.excludeProfileRepo ? nodes.filter((r) => r.name !== CONFIG.login) : nodes,
+    ),
     generatedAt: new Date().toISOString(),
   };
 }
@@ -371,6 +381,39 @@ const composition = (t, data) => {
 
 /* ---------------------------------------------------------------- emitter */
 
+/**
+ * A token that cannot see private activity still returns a perfectly valid
+ * response — it just reports zero pull requests and issues, and only the
+ * languages of public repos. That is exactly how a scheduled run once
+ * overwrote the measured cards with public-only numbers, silently. So refuse
+ * to publish anything that looks degraded, and refuse anything that goes
+ * backwards against the last good run. A bad run now fails loudly instead of
+ * quietly rewriting the cards. Pass --force to override a legitimate drop,
+ * such as deleting a repository.
+ */
+function assertNotDegraded(next, prevPath) {
+  const s = next.signals;
+  if (!s.prs && !s.prsMerged && !s.issues) {
+    throw new Error(
+      'refusing to write: 0 PRs, 0 merged and 0 issues means this token cannot see\n' +
+        'user-level activity. Check that TELEMETRY_TOKEN is a fine-grained PAT with\n' +
+        'repository access set to "All repositories".',
+    );
+  }
+  if (!existsSync(prevPath)) return;
+  const prev = JSON.parse(readFileSync(prevPath, 'utf8'));
+  const drops = [];
+  if (s.commits < (prev.signals?.commits ?? 0)) {
+    drops.push(`commits ${prev.signals.commits} -> ${s.commits}`);
+  }
+  if (next.languages.items.length < (prev.languages?.items?.length ?? 0)) {
+    drops.push(`languages ${prev.languages.items.length} -> ${next.languages.items.length}`);
+  }
+  if (drops.length) {
+    throw new Error(`refusing to write, numbers went backwards: ${drops.join(', ')}`);
+  }
+}
+
 const CARDS = { whatibuild, signals, composition };
 const dataFile = join(ROOT, 'telemetry.json');
 
@@ -378,7 +421,10 @@ const data = OFFLINE
   ? JSON.parse(readFileSync(dataFile, 'utf8'))
   : await measure();
 
-if (!OFFLINE) writeFileSync(dataFile, JSON.stringify(data, null, 2) + '\n', 'utf8');
+if (!OFFLINE) {
+  if (!process.argv.includes('--force')) assertNotDegraded(data, dataFile);
+  writeFileSync(dataFile, JSON.stringify(data, null, 2) + '\n', 'utf8');
+}
 
 for (const [theme, palette] of Object.entries(THEMES)) {
   const dir = theme === 'light' ? join(ROOT, 'assets') : join(ROOT, 'assets', 'dark');
