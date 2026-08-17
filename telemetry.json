@@ -1,0 +1,60 @@
+{
+  "signals": {
+    "measured": true,
+    "commits": 731,
+    "prs": 4,
+    "prsMerged": 4,
+    "issues": 2,
+    "stars": 10,
+    "releases": 1,
+    "activeRepos": 1,
+    "activeDays": 30
+  },
+  "languages": {
+    "measured": true,
+    "balanced": true,
+    "items": [
+      {
+        "name": "Python",
+        "pct": 41.03,
+        "color": "#3572A5"
+      },
+      {
+        "name": "HTML",
+        "pct": 24.96,
+        "color": "#e34c26"
+      },
+      {
+        "name": "TypeScript",
+        "pct": 16.61,
+        "color": "#3178c6"
+      },
+      {
+        "name": "TeX",
+        "pct": 6.65,
+        "color": "#3D6117"
+      },
+      {
+        "name": "PHP",
+        "pct": 4.89,
+        "color": "#4F5D95"
+      },
+      {
+        "name": "JavaScript",
+        "pct": 2.83,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "Shell",
+        "pct": 1.63,
+        "color": "#89e051"
+      },
+      {
+        "name": "CSS",
+        "pct": 1.4,
+        "color": "#663399"
+      }
+    ]
+  },
+  "generatedAt": "2026-08-17T13:30:41.713Z"
+}

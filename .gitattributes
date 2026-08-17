@@ -1,0 +1,3 @@
+# Cards are generated with \n. Without this, Windows checkouts get CRLF and
+# every run would show all files as modified against a clean tree.
+* text=auto eol=lf

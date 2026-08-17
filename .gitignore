@@ -1,0 +1,5 @@
+node_modules/
+
+# local telemetry token — never commit
+.env.local
+.env
