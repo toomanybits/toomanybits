@@ -1,9 +1,9 @@
 {
   "signals": {
     "measured": true,
-    "commits": 749,
-    "prs": 10,
-    "prsMerged": 9,
+    "commits": 768,
+    "prs": 14,
+    "prsMerged": 14,
     "issues": 7,
     "stars": 10,
     "releases": 1,
@@ -16,45 +16,45 @@
     "items": [
       {
         "name": "Python",
-        "pct": 43.66,
+        "pct": 35.07,
         "color": "#3572A5"
       },
       {
-        "name": "HTML",
-        "pct": 22.64,
-        "color": "#e34c26"
-      },
-      {
         "name": "TypeScript",
-        "pct": 13.48,
+        "pct": 28.52,
         "color": "#3178c6"
       },
       {
-        "name": "JavaScript",
-        "pct": 5.99,
-        "color": "#f1e05a"
+        "name": "HTML",
+        "pct": 21.24,
+        "color": "#e34c26"
       },
       {
         "name": "TeX",
-        "pct": 5.36,
+        "pct": 5.68,
         "color": "#3D6117"
       },
       {
         "name": "PHP",
-        "pct": 4.01,
+        "pct": 4.25,
         "color": "#4F5D95"
       },
       {
+        "name": "JavaScript",
+        "pct": 2.54,
+        "color": "#f1e05a"
+      },
+      {
         "name": "Shell",
-        "pct": 3.37,
+        "pct": 1.4,
         "color": "#89e051"
       },
       {
         "name": "CSS",
-        "pct": 1.5,
+        "pct": 1.3,
         "color": "#663399"
       }
     ]
   },
-  "generatedAt": "2026-08-21T13:13:12.934Z"
+  "generatedAt": "2026-08-21T18:58:46.606Z"
 }
