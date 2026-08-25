@@ -1,9 +1,9 @@
 {
   "signals": {
     "measured": true,
-    "commits": 819,
-    "prs": 16,
-    "prsMerged": 15,
+    "commits": 831,
+    "prs": 17,
+    "prsMerged": 17,
     "issues": 7,
     "stars": 10,
     "releases": 1,
@@ -21,7 +21,7 @@
       },
       {
         "name": "TypeScript",
-        "pct": 28.52,
+        "pct": 28.41,
         "color": "#3178c6"
       },
       {
@@ -41,20 +41,20 @@
       },
       {
         "name": "JavaScript",
-        "pct": 2.54,
+        "pct": 2.52,
         "color": "#f1e05a"
+      },
+      {
+        "name": "CSS",
+        "pct": 1.43,
+        "color": "#663399"
       },
       {
         "name": "Shell",
         "pct": 1.4,
         "color": "#89e051"
-      },
-      {
-        "name": "CSS",
-        "pct": 1.3,
-        "color": "#663399"
       }
     ]
   },
-  "generatedAt": "2026-08-25T07:10:31.338Z"
+  "generatedAt": "2026-08-25T13:13:37.219Z"
 }
