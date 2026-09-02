@@ -1,7 +1,7 @@
 {
   "signals": {
     "measured": true,
-    "commits": 944,
+    "commits": 947,
     "prs": 26,
     "prsMerged": 26,
     "issues": 8,
@@ -15,46 +15,46 @@
     "balanced": true,
     "items": [
       {
-        "name": "HTML",
-        "pct": 34.09,
-        "color": "#e34c26"
-      },
-      {
         "name": "TypeScript",
-        "pct": 29.89,
+        "pct": 39.01,
         "color": "#3178c6"
       },
       {
+        "name": "HTML",
+        "pct": 29.58,
+        "color": "#e34c26"
+      },
+      {
         "name": "Python",
-        "pct": 24.94,
+        "pct": 21.64,
         "color": "#3572A5"
       },
       {
         "name": "PHP",
-        "pct": 4.47,
+        "pct": 3.87,
         "color": "#4F5D95"
       },
       {
         "name": "JavaScript",
-        "pct": 3.01,
+        "pct": 2.65,
         "color": "#f1e05a"
       },
       {
         "name": "TeX",
-        "pct": 1.78,
+        "pct": 1.55,
         "color": "#3D6117"
       },
       {
         "name": "CSS",
-        "pct": 1.39,
+        "pct": 1.32,
         "color": "#663399"
       },
       {
         "name": "Shell",
-        "pct": 0.44,
+        "pct": 0.38,
         "color": "#89e051"
       }
     ]
   },
-  "generatedAt": "2026-09-02T16:37:19.138Z"
+  "generatedAt": "2026-09-02T21:05:39.655Z"
 }
